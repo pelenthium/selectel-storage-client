@@ -5,7 +5,8 @@ import com.github.pelenthium.selectel.SelectelClientBuilder;
 import com.github.pelenthium.selectel.commands.ContainerList;
 import com.github.pelenthium.selectel.model.ContainerListResponse;
 
-public class Example {
+public class ContainerListExample {
+
     public static void main(String[] args) {
         String username = args[0];
         String secret = args[1];

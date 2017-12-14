@@ -9,5 +9,5 @@ import lombok.Setter;
 @Builder
 public class UploadResponse {
     private boolean success;
-
+    private String path;
 }
