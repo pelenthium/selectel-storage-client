@@ -13,4 +13,21 @@ How to use :
     UploadResponse response = client.execute(new Upload(new File(file), "/test/test1.txt"));
  ```
  
- 
+Add to you project
+- Maven
+```xml
+        <dependency>
+          <groupId>com.github.pelenthium.selectel</groupId>
+          <artifactId>storage-client</artifactId>
+          <version>0.0.2</version>
+          <type>pom</type>
+        </dependency>
+```
+- Gradle
+    
+```groovy
+    repositories {
+        mavenUrl 'https://dl.bintray.com/pelenthium/maven'
+    }
+    compile 'com.github.pelenthium.selectel:storage-client:0.0.2'
+```
