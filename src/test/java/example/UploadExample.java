@@ -15,11 +15,11 @@ public class UploadExample {
         String bucket = args[2];
         String file = args[3];
 
-        SelectelClient build = SelectelClientBuilder.create()
+        SelectelClient client = SelectelClientBuilder.create()
                 .authorize(username, secret)
                 .bucket(bucket)
                 .build();
-        UploadResponse response = build.execute(new Upload(new File(file), "/test/test1.txt"));
+        UploadResponse response = client.execute(new Upload(new File(file), "/test/test1.txt"));
         System.out.println(response.isSuccess());
     }
 }
