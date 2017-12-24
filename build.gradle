@@ -1,4 +1,14 @@
+buildscript { repositories { jcenter() } }
+
+plugins {
+    id 'nebula.nebula-bintray-publishing' version '3.5.2'
+    id 'nebula.release' version '6.1.1'
+    id 'nebula.maven-publish' version '5.1.5'
+    id 'nebula.source-jar' version '5.1.5'
+}
+
 apply plugin:'java'
+group="com.github.pelenthium"
 
 repositories {
     mavenLocal()
@@ -14,4 +24,24 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
     testCompile "cglib:cglib-nodep:3.2.5"
+}
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    pkg {
+        repo = 'maven'
+        name = 'selectel-storage-client'
+        userOrg = 'pelenthium'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/pelenthium/selectel-storage-client.git'
+        labels = ['selectel', 'cloud storage', 'client']
+        publicDownloadNumbers = true
+        version {
+            name = project.version
+            vcsTag = project.version
+            released  = new Date()
+            attributes = [:]
+        }
+    }
 }

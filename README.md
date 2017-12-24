@@ -17,9 +17,9 @@ Add to you project
 - Maven
 ```xml
         <dependency>
-          <groupId>com.github.pelenthium.selectel</groupId>
-          <artifactId>storage-client</artifactId>
-          <version>0.0.2</version>
+          <groupId>com.github.pelenthium</groupId>
+          <artifactId>selectel-storage-client</artifactId>
+          <version>0.1.0</version>
           <type>pom</type>
         </dependency>
 ```
@@ -29,5 +29,5 @@ Add to you project
     repositories {
         mavenUrl 'https://dl.bintray.com/pelenthium/maven'
     }
-    compile 'com.github.pelenthium.selectel:storage-client:0.0.2'
+    compile 'com.github.pelenthium:selectel-storage-client:0.1.0'
 ```
