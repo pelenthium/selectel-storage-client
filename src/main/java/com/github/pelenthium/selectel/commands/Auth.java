@@ -1,8 +1,5 @@
 package com.github.pelenthium.selectel.commands;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import com.github.pelenthium.selectel.SelectelClient;
 import com.github.pelenthium.selectel.SelectelContants;
 import com.github.pelenthium.selectel.model.AuthResponse;
@@ -11,6 +8,9 @@ import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @AllArgsConstructor
 public class Auth implements SelectelCommand<AuthResponse> {
@@ -36,7 +36,7 @@ public class Auth implements SelectelCommand<AuthResponse> {
         if (!expire.isEmpty()) {
             try {
                 expireTime = Long.valueOf(expire);
-            } catch (NumberFormatException e) {}
+            } catch (NumberFormatException ignored) {}
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(SelectelContants.DATE_FORMAT);
         return AuthResponse.builder()

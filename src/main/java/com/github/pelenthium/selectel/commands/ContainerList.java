@@ -1,13 +1,5 @@
 package com.github.pelenthium.selectel.commands;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.pelenthium.selectel.SelectelClient;
 import com.github.pelenthium.selectel.SelectelContants;
 import com.github.pelenthium.selectel.model.AuthResponse;
@@ -22,6 +14,12 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
 public class ContainerList implements SelectelCommand<ContainerListResponse> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ContainerList.class);
@@ -29,7 +27,7 @@ public class ContainerList implements SelectelCommand<ContainerListResponse> {
     @Override
     public HttpRequestBase buildRequest(SelectelClient client) {
         AuthResponse response = client.authorise();
-        HttpGet get = new HttpGet(response.getStorageUrl() + "?format=json");
+        HttpGet get = new HttpGet(String.format("%s?format=json", response.getStorageUrl()));
         get.addHeader(SelectelContants.X_AUTH_TOKEN, response.getAuthToken());
         return get;
     }
@@ -38,7 +36,8 @@ public class ContainerList implements SelectelCommand<ContainerListResponse> {
     public ContainerListResponse parseResponse(CloseableHttpResponse response) {
         List<ContainerResponse> containers = new ArrayList<>();
         try (InputStreamReader reader = new InputStreamReader(new BufferedInputStream(response.getEntity().getContent()))) {
-            containers = new Gson().fromJson(reader, new TypeToken<List<ContainerResponse>>(){}.getType());
+            containers = new Gson().fromJson(reader, new TypeToken<List<ContainerResponse>>() {
+            }.getType());
         } catch (IOException e) {
             LOGGER.error("Failed parse response for GET container info request", e);
         }

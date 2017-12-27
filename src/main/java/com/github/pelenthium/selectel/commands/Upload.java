@@ -1,10 +1,5 @@
 package com.github.pelenthium.selectel.commands;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.stream.Stream;
-
 import com.github.pelenthium.selectel.SelectelClient;
 import com.github.pelenthium.selectel.SelectelContants;
 import com.github.pelenthium.selectel.model.AuthResponse;
@@ -14,7 +9,9 @@ import org.apache.http.client.entity.EntityBuilder;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.util.EntityUtils;
+
+import java.io.File;
+import java.io.InputStream;
 
 public class Upload implements SelectelCommand<UploadResponse> {
 

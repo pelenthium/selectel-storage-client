@@ -11,4 +11,6 @@ public class SelectelContants {
     public static final String DATE = "Date";
     public static final String DATE_FORMAT = "EEE, dd MMM yyyy HH:mm:ss zzz";
     public static final String X_ACCOUNT_CONTAINER_COUNT = "X-Account-Container-Count";
+    public static final String X_ACCOUNT_OBJECT_COUNT = "X-Account-Object-Count";
+    public static final String X_ACCOUNT_BYTES_USED = "X-Account-Bytes-Used";
 }

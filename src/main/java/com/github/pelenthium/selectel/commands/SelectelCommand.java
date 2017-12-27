@@ -6,5 +6,6 @@ import org.apache.http.client.methods.HttpRequestBase;
 
 public interface SelectelCommand<R> {
     HttpRequestBase buildRequest(SelectelClient client);
+
     R parseResponse(CloseableHttpResponse response);
 }

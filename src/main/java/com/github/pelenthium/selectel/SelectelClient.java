@@ -1,13 +1,8 @@
 package com.github.pelenthium.selectel;
 
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-
 import com.github.pelenthium.selectel.commands.Auth;
 import com.github.pelenthium.selectel.commands.SelectelCommand;
 import com.github.pelenthium.selectel.model.AuthResponse;
-import com.google.gson.Gson;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -15,6 +10,10 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Client for execute Selectel Command via REST API
@@ -47,7 +46,7 @@ public class SelectelClient {
             }
             authResponse = execute(new Auth(username, secret));
             if (!authResponse.isSuccess()) {
-                throw new IllegalArgumentException("Username or password isn't correct, authorisation failed");
+                throw new IllegalArgumentException("Username or password isn't correct, authorization failed");
             }
         }
         return authResponse;
