@@ -74,7 +74,7 @@ First of all you need to sign up in [selectel.ru](https://selectel.ru/services/c
 
 # 4. Logging
 
-See (slf4j)[http://www.slf4j.org/manual.html#swapping]
+See [slf4j](http://www.slf4j.org/manual.html#swapping)
 
 # 5. Initialization and Authorization
 
