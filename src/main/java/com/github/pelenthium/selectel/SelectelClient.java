@@ -40,7 +40,7 @@ public class SelectelClient {
     }
 
     public AuthResponse authorise() {
-        if (!this.checkToken()) {
+        if (authResponse == null) {
             if (username == null || secret == null) {
                 throw new IllegalStateException("You need to set username/secret to SelectelClient");
             }
@@ -48,6 +48,8 @@ public class SelectelClient {
             if (!authResponse.isSuccess()) {
                 throw new IllegalArgumentException("Username or password isn't correct, authorization failed");
             }
+        } else if (isTokenExpired()) {
+            throw new IllegalStateException("Token is expired");
         }
         return authResponse;
     }
@@ -71,16 +73,16 @@ public class SelectelClient {
         return httpClient;
     }
 
-    private boolean checkToken() {
+    /**
+     * Check than token is expired
+     *
+     * @return true when token is null or expired
+     */
+    public boolean isTokenExpired() {
         if (authResponse == null) {
-            return false;
-        } else {
-            LocalDateTime expireDate = authResponse.getDate().plus(authResponse.getExpireAuthToken(), ChronoUnit.SECONDS);
-            if (expireDate.compareTo(LocalDateTime.now()) < 0) {
-                LOGGER.warn("Token is expired");
-                return false;
-            }
             return true;
         }
+        LocalDateTime expireDate = authResponse.getDate().plus(authResponse.getExpireAuthToken(), ChronoUnit.SECONDS);
+        return expireDate.compareTo(LocalDateTime.now()) < 0;
     }
 }

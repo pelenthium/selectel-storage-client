@@ -24,9 +24,9 @@ abstract class SelectelBaseTest extends Specification {
         return ZonedDateTime.of(time, ZoneId.of("Europe/Moscow"))
     }
 
-    def buildBaseClient() {
+    def buildBaseClient(LocalDateTime date = null, long expired = 10000L) {
         def client = Spy(SelectelClient, constructorArgs: ['ok', 'ok']) {
-            authorise() >> new AuthResponse(true, "token", "stoken", "test", LocalDateTime.now(), 10000L)
+            authorise() >> new AuthResponse(true, "token", "stoken", "test", date?:LocalDateTime.now(), expired)
         }
         def http = Stub(CloseableHttpClient)
         client.setHttpClient(http)
